@@ -1,0 +1,53 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verify</title>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Verify</h1>
+
+    <form action="/verify" method="post" class="w-25" id="form">
+
+      <label for="otp">OTP</label>
+      <input
+        type="number"
+        class="form-control mb-3"
+        id="otp"
+        placeholder="123456..."
+        name="otp"
+        required
+      >
+
+      <input type="hidden" id="email" name="email">
+
+      <button type="submit">Verify</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.querySelector("#form");
+
+    form.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const email = localStorage.getItem("email");
+
+      if (!email) {
+        alert("Email not found!");
+        return;
+      }
+
+      document.querySelector("#email").value = email;
+
+      form.submit();
+    });
+  </script>
+
+</body>
+</html>
